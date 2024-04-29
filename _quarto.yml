@@ -8,7 +8,7 @@ book:
   title: "Derivatives"
   author: "Kim Hyeonghwan"
   date: "2024. 4. 29."
-  cover-image: hull.jpg
+  cover-image: images/hull.jpg
   chapters:
     - index.qmd
     - Chapter3.qmd
@@ -25,6 +25,6 @@ format:
   html:
     theme: cosmo
     linestretch : 2
-  pdf:
-    documentclass: scrreprt
-    include-in-header: header.tex
+#  pdf:
+#    documentclass: scrreprt
+#    include-in-header: header.tex
