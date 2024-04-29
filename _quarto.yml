@@ -1,0 +1,30 @@
+project:
+  type: book
+
+execute:
+  freeze: auto
+
+book:
+  title: "Derivatives"
+  author: "Kim Hyeonghwan"
+  date: "2024. 4. 29."
+  cover-image: hull.jpg
+  chapters:
+    - index.qmd
+    - Chapter3.qmd
+    - Chapter4.qmd
+    - Chapter5.qmd
+    - Chapter7.qmd
+    - Chapter10.qmd
+    - Chapter11.qmd
+    - Chapter13.qmd
+    - Chapter14.qmd
+    - Problems.qmd
+
+format:
+  html:
+    theme: cosmo
+    linestretch : 2
+  pdf:
+    documentclass: scrreprt
+    include-in-header: header.tex

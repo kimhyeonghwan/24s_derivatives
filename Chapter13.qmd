@@ -1,0 +1,212 @@
+# Chapter 13 {.unnumbered}
+
+이항모형 (Binomial Trees)
+
+옵션의 프라이싱에 대한 가장 유명한 방법 중 하나인 이항모형을 다룹니다.
+
+CRR모형(Cox, Ross, Rubinstein 1979)을 다룰 예정이며, 주가는 랜덤워크를 따르고 차익거래가 발생하지 않는다는 기본적인 가정을 전제합니다. 이는 BSM(Black-Sholes-Merton)모형과 함께 매우 중요한 방법론으로, 이항모형의 step이 많아질 수록 두 모형의 결과값은 동일해집니다. 이러한 성질에 대해서는 chaper15 및 21에서 보다 자세히 다룰 예정입니다.
+
+CRR모형은 (1) 일반적인 no-arbitrage을 기반으로 하고, (2) 미국형 옵션 및 이색옵션을 가치평가하는 데에 직관적이고 유용하며, (3) 위험중립가치평가(Risk-neutral valuation)을 사용한다는 점에서 매우 중요합니다.
+
+## 13.1 A one-step binomial model and a no-arbitrate argument
+
+옵션의 만기를 $T$라고 할 때, 향후 주가가 T시점까지 오르거나 내리는 단순한 구조로 되어있다고 가정하고, 현재 주가를 $S_0$, 주가 상승시 $S_T=S_0\times u$ 및 하락시 $S_T=S_0\times d$, 행사가격 $K$의 유럽형 옵션의 현재가격이 $f_0$로 주어져있다고 해보겠습니다.
+
+현재시점에 주식을 $\Delta$만큼 매수하고, 1주에 대한 옵션을 매도하는 포트폴리오 $\Delta S_0-f_0$를 만든다면, 주가 상승시 포트폴리오의 가치는 $\Delta S_0u-f_u$ 및 하락시에는 $\Delta S_0d-f_d$로 결정됩니다.
+
+여기서, **해당 포트폴리오를 무위험포트폴리오로 만들어 옵션의 가치를 평가**할 수 있습니다. 해당 포트폴리오가 무위험이라는 의미는 주가 상승 및 하락시의 포트폴리오 가치가 동일하게 되어 변동성이 0이 된다는 것을 말합니다.
+
+즉, $\Delta S_0u-f_u=\Delta S_0d-f_d\;\Rightarrow\;\Delta=\frac{f_u-f_d}{S_0u-S_0d}$인 $\Delta$를 도출하여 주식을 매수한다면 해당 포트폴리오는 위험이 0이 될 것 입니다.
+
+::: {.callout-tip title="13.6 Options Delta"}
+위의 델타는 Opion Greeks 중, 기초자산가격 변동에 따른 옵션가격의 민감도인 델타($\Delta$)에 해당합니다.
+
+위의 주식매수+옵션매도 포트폴리오에서 우리는 만기 pay-off를 고정시키는 델타를 산출하였으므로, 이는 현재시점에서 주식가격의 변동분과 옵션가격의 변동분이 상쇄됨을 의미합니다. 즉, 포트폴리오에서 주식의 가격이 1만큼 변할때 이에 대응되는 옵션의 가치변화는 $\Delta$에 해당하므로, 이는 기초자산 가격에 대한 옵션가격의 민감도와 같습니다.
+
+한편, 이렇게 옵션을 통해 주식포트폴리오의 가격변동분을 완벽히 상쇄하는 것을 델타헷지(Delta hedging)라 합니다.
+:::
+
+따라서, 포트폴리오의 주가 상승 및 하락에 따른 가치가 $\Delta S_0u-f_u$로 고정되며, no-arbitrage 가정에 따라 $T$까지의 수익률은 무위험이자율 $r_f$로 정해져야 합니다.
+
+즉, 포트폴리오의 현재가치는 미래 pay-off를 무위험이자율로 할인한 현재가치와 동일해져야 하며,($\Delta S_0-f_0=(\Delta S_0u-f_u)e^{-rT}$) 여기에 $\Delta=\frac{f_u-f_d}{S_0u-S_0d}$를 대입하여 정리하면, 아래와 같이 옵션의 현재가치를 평가할 수 있습니다.
+
+$\Rightarrow f_0=\Delta S_0-(\Delta S_0u-f_u)e^{-rT}=\Delta S_0(1-ue^{-rT})+f_ue^{-rT}$
+
+$\Rightarrow f_0=\frac{f_u-f_d}{u-d}(1-ue^{-rT})+f_ue^{-rT}=\frac{f_u-f_d-f_uue^{-rT}+f_due^{-rT}+(u-d)f_ue^{-rT}}{u-d}$
+
+$\Rightarrow f_0=\frac{f_u(1-de^{-rT})-f_d(1-ue^{-rT})}{u-d}=e^{-rT}\frac{f_u(e^{rT}-d)+f_d(u-e^{rT})}{u-d}$
+
+$\Rightarrow f_0=e^{-rT}\frac{f_u(e^{rT}-d)+f_d(1-(e^{rT}-d))}{u-d}=e^{-rT}(f_u\times p+f_d\times(1-p))\;for\;p=\frac{e^{rT}-d}{u-d}$
+
+::: {.callout-important title="Probability of stock price"}
+위의 1-step binomial tree는 향후 주식이 상승할때의 가격과 하락할 때의 가격만을 이용하여 전개하고 있습니다.
+
+즉, 주식이 상승할 확률과 하락할 확률은 다루고 있지 않습니다. 따라서, 상승할 확률이 0.5일때와 0.9일때의 옵션 가격은 동일합니다. 이는 매우 역설적으로 보입니다.
+
+이러한 이유는 우리가 옵션을 평가할 때, 주식의 향후 가격을 이용해 상대적으로 평가하였기 때문입니다. 주식의 상승 또는 하락확률은 이미 주식의 상승시 가격과 하락시 가격에 내재되어 있기 때문에, 다시 한번 확률을 고려할 필요가 없어지게 됩니다.
+:::
+
+## 13.2 Risk-Neutral Valuation
+
+**위험중립가치평가**란 파생상품을 프라이싱할 때, 모든 투자자가 위험중립적(*risk-neutral*)이라고 가정하는 것을 말합니다. 이는 모든 자산의 기대수익률이 무위험이자율과 동일하다는 의미이며, 이러한 투자자들만 존재하는 세상을 *risk-neutrall world*라고 합니다.
+
+위험중립세상은 크게 두가지의 특징이 있습니다.
+
+(1) 모든 투자자산의 기대수익률은 무위험이자율과 같다.
+(2) 따라서, 투자자산의 향후 pay-off를 현재가치로 환산할 때 적용하는 할인률은 무위험이자율이다.
+
+이제 다시, 현재 주가($S_0$)는 $T$시점까지 상승($S_0u$)하거나 하락($S_0d$)하고, 주가가 상승할 확률을 $p$라고 가정하면 위험중립세상에서 아래와 같이 표현할 수 있습니다.
+
+$$E(S_T)=S_0e^{rT},\;E(S_T)=p\times S_0u+(1-p)\times S_0d$$
+
+$$\Rightarrow S_0e^{rT}=S_0(p(u-d)+d)\Rightarrow p=\frac{e^{rT}-d}{u-d}$$
+
+즉, 위험중립세상에서 주가의 상승확률은 $\frac{e^{rT-d}}{u-d}$와 같으며, 이는 1-step binomial tree에서 전개한 $f_0=e^{-rT}(f_up+f_d(1-p))$의 p와 동일합니다. 즉, **옵션의 현재가치는 위험중립세상에서 주가의 상승/하락 확률에 따른 옵션의 미래 pay-off들의 합의 현재가치와 같다**는 것을 의미하며, 이를 통해 **위험중립세상에서 평가한 옵션의 가치가 실제 세상에서도 동일하게 적용**된다는 중요한 사실을 알 수 있습니다.
+
+::: {.callout-tip}
+실제 세상에서 투자자는 위험자산에 투자할 때, 보다 높은 수익률을 기대(*risk-averse*)하기 때문에 실제 세상과 위험중립세상은 차이가 있습니다. 그러나, 1-step binomial tree와 위험중립세상에서 주가의 상승확률의 결과를 통해 위험중립세상에서 평가한 파생상품의 가치는 실제 세상에서 동일하게 적용된다는 것을 알 수 있습니다.
+
+한편, 실제 세상(*risk-averse*)에서 주가의 기대수익률은 무위험이자율보다 높을 것이므로 실제 세상에서 산출한 상승확률은 위험중립세상보다 클 것 입니다. 다만, 이 확률을 이용하여 옵션을 가치평가하는 경우 미래 pay-off에 적용하는 할인률을 옵션의 기대수익률로 변경해주어야 합니다.
+
+그러나, 주식보다 위험한 자산인 옵션의 할인률을 산출하는 것은 매우 어려우므로, 위험중립세상에서 옵션을 평가하는 것이 실제 세상과 동일하다는 것은 매우 강력한 도구입니다.
+:::
+
+## 13.3 Two-step binomial trees
+
+```{mermaid}
+flowchart LR
+A(S, f) --> B(Su, fu)
+A --> C(Sd, fd)
+B --> D(Suu, fuu)
+B --> E(Sud=Sdu, fud=fdu)
+C --> E
+C --> F(Sdd, fdd)
+```
+
+이제, binomial tree를 확장하여 2-step model을 살펴보겠습니다. 주가가 상승하거나 하락하는 것이 2번에 걸쳐서 이루어지고, 각 기점의 시간을 $\Delta t$라고 하면, 1-step binomial tree에 따라 다음과 같이 표현할 수 있습니다.
+
+$$f_0=e^{-r\Delta t}(pf_u+(1-p)f_d)\;for\;p=\frac{e^{-r\Delta t}-d}{u-d}$$
+
+또한, 이항모형의 2-step과정은 다음과 같이 표현할 수 있습니다.
+
+$$f_u=e^{-r\Delta t}(pf_{uu}+(1-p)f_{ud})\;and\;f_d=e^{-r\Delta t}(pf_{du}+(1-p)f_{dd})$$
+
+$$\Rightarrow f_0=e^{-r\times 2\Delta t}(p^2f_{uu}+2p(1-p)f_{ud}+(1-p)^2f_{dd})$$
+
+::: {.callout-note title="13.4 Put options example"}
+Binomial tree의 일반화된 식은 콜옵션과 풋옵션에 관계없이 적용할 수 있습니다.
+:::
+
+## 13.5 American Options
+
+Binomial Tree는 미국형옵션을 가치평가할 때 아주 유용한 모형입니다. 유럽형옵션과 동일하게 만기까지 모든 node를 전개한 후, 현재가치로 환산할 때 하나의 node씩 진행하면서 조기행사하였을 때와 비교하면 됩니다.
+
+$$f_u=max[max(K-S_u,0),\;e^{-r\Delta t}(pf_{uu}+(1-p)f_{ud})]$$
+
+$$f_d=max[max(K-S_d,0),\;e^{-r\Delta t}(pf_{du}+(1-p)f_{dd})]$$
+
+$$f_0=max[max(K-S_0,0),\;e^{-r\Delta t}(pf_u+(1-p)f_d)]$$
+
+즉, 위와 같이 만기시점부터 이전 step으로 내려오면서 bootstrapping방식으로 미국형 옵션의 가치를 산출할 수 있습니다.
+
+## 13.7 Matching Volatility with $u$ and $d$
+
+앞서 무위험이자율, 주가상승/하락률, 시간의 증분이 주어졌을 때 위험중립확률 $p=\frac{e^{r\Delta t}-d}{u-d}$로 결정되는 것을 알아보았습니다.
+
+이제, 주가상승률 및 하락률을 주가변동성을 이용하여 표현해보겠습니다. 주가수익률의 표준편차를 $\sigma$라고 할 때, 시간의 증분 $\Delta t$ 동안의 주가수익률의 표준편차는 $\sigma\sqrt{\Delta t}$로 표현할 수 있습니다.
+
+::: {.callout-important title="Chapter 15 : 주요 내용"}
+주가가 Geometric Brownian Motion을 따른다고 가정하겠습니다.($\frac{dS}{S}=\mu dt+\sigma dW_t$)
+
+즉, 주가의 기대수익률이 $\mu$, 표준편차가 $\sigma$이면, 매우 짧은 시간에 대한 주가수익률이 정규분포($\frac{\Delta S}{S}\sim N(\mu\Delta t,\sigma^2\Delta t)$)를 따른다고 할 수 있습니다.
+
+이때, 위험중립세상을 가정하면 $\mu=r$입니다.
+:::
+
+앞서 binomial tree의 한단계의 step에서 주가의 변동성을 $E[X^2]-(E[X])^2$으로 표현하면 다음과 같이 정리할 수 있습니다.
+
+$$\sigma^2\Delta t=p(u-1)^2+(1-p)(d-1)^2-(e^{r\Delta t}-1)^2$$
+
+$$=p[(u-1)^2-(d-1)^2]+(d-1)^2-e^{2r\Delta t}+2e^{r\Delta t}-1$$
+
+$$=\frac{e^{r\Delta t}-d}{u-d}[(u+d)(u-d)-2(u-d)]+d^2-2d-e^{2r\Delta t}+2e^{r\Delta t}$$
+
+$$=e^{r\Delta t}(u+d)-ud-d^2-2e^{r\Delta t}+2d+d^2-2d-e^{2r\Delta t}+2e^{r\Delta t}$$
+
+$$=e^{r\Delta t}(u+d)-ud-e^{2r\Delta t}..._{(13.13)}$$
+
+여기서, 주가 상승 및 하락에 따른 비율을 동일하고 시간의 증분은 매우 작아 power가 1보다 크면 0으로 수렴한다고 가정하겠습니다. 즉, $(\Delta t)^k\rightarrow 0\;for\;k>1\;\;\&\;\;S_0ud=S_0du=S_0\Rightarrow ud=1$
+
+그러면, $d=\frac{1}{u},u>d$이며 테일러전개를 통해 $e^{a\Delta t}=1+a\Delta t,\; e^{a\sqrt{\Delta t}}=1+a\sqrt{\Delta t}+\frac{1}{2}a^2\Delta t$로 쓸 수 있습니다.
+
+다시 (13.13)에 이를 적용해보겠습니다.
+
+$e^{r\Delta t}(u+d)-ud-e^{2r\Delta t}=\sigma^2\Delta t$
+
+$\Rightarrow e^{r\Delta t}(u+d)-ud=e^{2r\Delta t}+\sigma^2\Delta t$
+
+$\Rightarrow e^{r\Delta t}(u+1/u)-1=1+2r\Delta t+\sigma^2\Delta t=e^{2r+\sigma^2\Delta t}$
+
+$\Rightarrow u+\frac{1}{u}-e^{-r\Delta t}=e^{(r+\sigma^2)\Delta t}$
+
+$\Rightarrow u^2-(e^{(r+\sigma^2)\Delta t}+e^{-r\Delta t})u+1=0$
+
+$\Rightarrow u^2-(2+\sigma^2\Delta t)u+1=0$
+
+$$u=\frac{2+\sigma^2\Delta t\pm\sqrt{4+4\sigma^2\Delta t+\sigma^4 (\Delta t)^2_{\rightarrow 0}-4}}{2}=1\pm\sigma\sqrt{\Delta t}+\frac{1}{2}\sigma^2\Delta t=e^{\pm\sigma\sqrt{\Delta t}}$$
+
+$$\therefore u=e^{\sigma\sqrt{\Delta t}},\;d=e^{-\sigma\sqrt{\Delta t}}$$
+
+위 전개를 통해 얻을 수 있는 $u,d$가 CRR모형에서 사용하는 상승 및 하락비율입니다.
+
+::: {.callout-important title="In Real-world u&d"}
+위의 $u,d$는 위험중립세상에서 산출한 상승 및 하락비율이나, real world에서도 동일하게 적용할 수 있습니다.
+
+실제 세상에서 주가의 기대수익률을 $\mu$, 변동성을 $\sigma$, 주가 상승확률을 $p^*=\frac{e^{\mu\Delta t}-d}{u-d}$라고 가정하고 $E[S_T^2]-(E[S_T])^2=\sigma^2\Delta t$를 위와 동일하게 전개하면, 동일한 $u,d$를 얻을 수 있습니다.
+
+한편, 위험중립세상과 실제 세상에서 변동성은 동일하다고 가정하고 있는데, 이는 걸사노프의 정리(*Girsanov's Theorem*)를 이용한 결과입니다.
+
+걸사노프 정리에 따르면, 위험중립세상에서 실제세상으로 전환한다는 것은 측도를 전환(*changing measure*)하는 것인데, 측도론에서 실제세상은 P-measure 및 위험중립세상은 Q-measure에 해당합니다.
+
+측도를 전환할 때, 기대성장률은 변화하지만 변동성은 유지되는데, 이것이 위험중립세상에서 실제세상으로 전환할 때 주가의 기대수익률은 변하는 반면 변동성은 유지된다는 것을 의미합니다.
+:::
+
+## 13.8 The Binomial Tree Formulas
+
+앞선 전개식을 요약하면, 주가의 변동성($\sigma$) 및 무위험이자율($r$), 1-step의 시차($\Delta t$)가 주어질 때, 이항모형을 적용한 옵션의 가치를 평가할 수 있습니다.
+
+주가상승률 $u=e^{\sigma\sqrt{\Delta t}}$, 주가하락률 $d=\frac{1}{u}$, 주가상승률 $p=\frac{e^{r\Delta t}-d}{u-d}$, 주가하락률 $q=1-p$가 적용됩니다.
+
+지금까지 1-step 또는 2-step의 간단한 이항모형만을 살펴보았으나, 실제 실무에 적용될때는 약 30-step의 이항과정이 진행되며, 이는 옵션의 만기까지 주가흐름에 대한 경우의 수가 $2^{30}\approx 10^9=10billions$ 이상 된다는 것을 의미합니다. 한편, 이항과정의 step이 많아질수록, $\Delta t$가 매우 작아질수록 이항모형의 결과값은 BSM모형의 결과값으로 수렴하게 됩니다.(Appendix 참조)
+
+## 13.11 Binomial Trees in various Options
+
+### Options on Stocks & Stock indices with continuous dividend
+
+주가 및 주가지수의 연속복리 배당수익률이 $q$로 주어진 경우입니다.
+
+위험중립세상에서 주가 및 주가지수의 수익률은 무위험이자율과 같아야하므로, 주가의 기대수익률 $k$와 배당수익률 $q$를 합산한 수익률인 무위험이자율과 같아야합니다.
+
+즉, $E[S_{\Delta t}]=S_0e^{r\Delta t}=S_0e^{k\Delta t}e^{q\Delta t},\;\;k=r-q$입니다.
+
+따라서, 앞선 전개식에서 $p=\frac{e^{(r-q)\Delta t}-d}{u-d}$로 변경됩니다.
+
+### Options on Currencies
+
+이전 장에서 통화선도계약 및 통화스왑의 논리를 생각해봅시다.
+
+현재시점에서 자금을 차입하여 해외통화에 투자한다면, 기대수익률은 $e^{(r-r_f)\Delta t}$가 될 것입니다.
+
+즉, $p=\frac{e^{(r-r_f)\Delta t}-d}{u-d}$가 적용됩니다.
+
+### Options on Futures
+
+선물의 가격 $F_0=S_0e^{rT}$로 결정됩니다.
+
+$F_T=S_T$이므로, 위험중립세상에서 $E[F_T]=E[S_T]=S_0e^{rT}$이며 이항모형에서 이를 적용하면 선물의 기대수익률이 0임을 알 수 있습니다.
+
+$$pF_0u+(1-p)F_0u=E[F_T]=E[S_T]$$
+
+$$\Rightarrow pS_0e^{rT}u+(1-p)S_0e^{rT}d=S_0e^{rT}$$
+
+$$\therefore p=\frac{1-d}{u-d}$$
