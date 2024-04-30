@@ -1,4 +1,4 @@
-# Chapter 13 {.unnumbered}
+# Chapter 14 {.unnumbered}
 
 위너과정 및 이토보조정리 (*Wiener Processes and Ito's Lemma*)
 

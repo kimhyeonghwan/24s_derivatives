@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 316c5b0f-ca31-40bf-af15-e74a17041938
+      url: 'https://hwan.quarto.pub/derivatives'

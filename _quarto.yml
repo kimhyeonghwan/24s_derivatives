@@ -20,11 +20,12 @@ book:
     - Chapter13.qmd
     - Chapter14.qmd
     - Problems.qmd
+  downloads: pdf
 
 format:
   html:
     theme: cosmo
     linestretch : 2
-#  pdf:
-#    documentclass: scrreprt
-#    include-in-header: header.tex
+  pdf:
+    documentclass: scrreprt
+    include-in-header: header.tex
