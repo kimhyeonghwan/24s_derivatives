@@ -582,51 +582,111 @@
   {
     "objectID": "Chapter14.html",
     "href": "Chapter14.html",
-    "title": "Chapter 13",
+    "title": "Chapter 14",
     "section": "",
     "text": "14.1 The Markov Property\n마코프 과정(Markov process)는 특수한 형태의 확률과정으로, 시간의 흐름에 따라 변하는 변수의 미래값은 오직 현재 값에만 영향을 받는 확률과정입니다.\n즉, 일주일 단위 주가가 마코브 과정을 따른다면 다음 주의 주가는 오직 현재의 주가에만 영향을 받으며, 일주일 전의 주가는 아무런 영향을 주지 않는다는 의미입니다.\n이는 효율적 시장가설(EMH, Efficient Market Hypothesis)의 weak-form을 만족한다는 의미와 유사합니다.",
     "crumbs": [
-      "Chapter 13"
+      "Chapter 14"
     ]
   },
   {
     "objectID": "Chapter14.html#continuous-time-stochastic-processes",
     "href": "Chapter14.html#continuous-time-stochastic-processes",
-    "title": "Chapter 13",
+    "title": "Chapter 14",
     "section": "14.2 Continuous-time Stochastic Processes",
     "text": "14.2 Continuous-time Stochastic Processes\n먼저, 마코프 과정을 따르는 확률변수를 생각해보겠습니다. 현재 가격이 \\(P_t\\)이고, 하루동안의 가격변화는 표준정규분포 \\(\\phi(0,1)\\)를 따른다고 가정하겠습니다. 그럼 2일간의 가격변화의 분포는 어떻게 될까요?\n먼저, 2일간의 가격변화는 각각 하루씩 표준정규분포를 따르는 확률변수로 분할할 수 있습니다. 각 확률변수는 마코프 과정이므로 하루의 변화가 다음 하루의 변화에 영향을 주지않습니다. 즉, 각각 하루의 표준정규분포는 서로 독립입니다.\n따라서, 2일간의 가격변화의 평균과 분산은 각각의 평균 및 분산의 합산이므로 \\(\\phi(0,2)\\)를 따르게 될 것입니다. 이를 일반화한다면, 기간 \\(T\\)동안 주가의 변화가 \\(\\phi(0,T)\\)를 따른다면 매우 작은 시간의 변화 \\(\\Delta t\\)동안의 주가의 변화는 \\(\\phi(0,\\Delta t)\\)를 따른다고 할 수 있습니다.\n여기서, 표준편차 \\(\\sigma\\)는 기간의 누적에 \\(\\sqrt{\\;\\;}\\)의 크기로 변화한다는 사실에 주목해야합니다.\n\nWiener Process\n위너과정은 마코프 과정의 일종으로, 평균변화율(drift rate)이 0이고 변동률(variance rate)이 1인 확률과정입니다. 이는 물리학에서 분자의 음직임을 표현하는데 쓰이기도 하며, 브라운 운동(Brownian motion)이라고도 불립니다.\n확률변수 \\(z\\)가 위너과정을 따른다는 것은, 아래 두 성질을 만족한다는 의미입니다.\nProperty 1. \\(For\\;\\Delta t,\\;\\Delta z=\\epsilon\\sqrt{\\Delta t}\\;for\\;\\epsilon\\sim\\phi(0,1)\\)이다.\nProperty 2. \\(For\\;any\\;\\Delta t_1\\neq\\Delta t_2.\\;\\Delta z_1\\;and\\;\\Delta z_2\\;are\\;independent.\\)\n첫번째 성질을 통해 \\(\\Delta z\\)의 평균은 0, 분산은 \\(\\Delta t\\), 표준편차는 \\(\\sqrt{\\Delta t}\\)임을 알 수 있고, 두번째 성질을 통해 위너과정이 마코프과정의 한 종류임을 알 수 있습니다.\n또한, \\(\\sqrt{\\Delta t}&gt;&gt;\\Delta t\\;for\\;\\Delta t\\rightarrow0\\)이므로 단위시간 \\(\\Delta t\\)가 작아지면 작아질수록 위너과정을 따르는 확률변수 \\(\\Delta z\\)의 변동성(표준편차)은 단위시간 대비 매우 커짐을 알 수 있습니다.\n이는 미시세상에서 위너과정을 따르는 확률변수가 매우 복잡하게 움직이는 것을 의미하며, 이를 통해 브라운 운동의 특징 두가지를 도출할 수 있습니다.\n\n위너과정을 따르는 확률변수 \\(z\\)에 대해, 어떠한 구간의 시간을 관측하더라도 \\(z\\)의 경로의 길이의 기대값은 무한대로 발산한다.\n특정 값의 \\(z\\)에 대해, 해당 값을 가지는 횟수는 어떠한 구간의 시간을 관측하더라도 무한대로 발산한다.\n\n\n\nGeneralized Wiener Process\n앞서 평균변화율(drift rate)가 0이고 변동률(variance rate)이 1인 위너과정을 살펴보았습니다.\n일반화된 위너과정(GWP)이란, 단위시간에 대해 평균변화율과 변동률이 상수 a, b로 주어진 위너과정을 말합니다.\n즉, \\(dx=a\\,dt+b\\,dW\\)인 확률과정 \\(x\\)는 GWP를 따르게 됩니다.\n여기서 \\(dW\\)는 위너과정이므로, 단위시간 \\(\\Delta t\\)가 주어져 있다면 GWP를 따르는 확률변수 \\(x\\)의 변화량은 \\(\\Delta x=a\\,\\Delta t+b\\,\\epsilon\\sqrt{\\Delta t}\\)으로 표현할 수 있습니다.\n따라서, \\(\\Delta x\\)의 평균은 \\(a\\,\\Delta t\\), 분산은 \\(b^2\\,\\Delta t\\)이며 변동성(표준편차)은 \\(b\\,\\sqrt{\\Delta t}\\)가 되며, 단위시간이 충분히 작다면 \\(\\Delta x\\sim\\phi(a\\Delta t,b^2\\Delta t)\\)로 근사할 수 있습니다.\n\n\n\n\n\n\n기간 T에 대한 GWP의 분포\n\n\n\n\\(x\\)가 GWP를 따른다고 가정하고, 기간 \\(T\\)년과 충분히 작은 단위시간 \\(\\Delta t,\\;\\sum_{k=1}^N\\Delta t=N\\Delta t=T\\)가 주어져있다고 가정하겠습니다.\n각각의 \\(\\Delta x_i=a\\Delta t+b\\epsilon_i\\sqrt{\\Delta t}\\)도 역시 GWP를 따르게 되며, 모두 독립입니다.\n그러면, 확률변수 \\(x\\)의 기간중 누적변화 \\(x_T-x_0=\\sum\\Delta x_i\\)는 아래와 같이 전개할 수 있습니다.\n\\[\\sum\\Delta x_i=\\sum a\\Delta t+\\sum b\\epsilon_i\\sqrt{\\Delta t}=a\\,T+b\\sqrt{\\Delta t}\\sum \\epsilon_i\\]\n각각의 \\(\\epsilon_i\\sim\\phi(0,1)\\)은 독립이므로 \\(\\sum \\epsilon_i\\sim\\phi(0,N)\\)입니다. 따라서,\n\\[x_t-x_0\\sim\\phi(aT,b^2\\Delta t\\,N)=\\phi(aT,b^2T)\\]\n\n\n위너과정, \\(a\\,dt\\) 및 GWP의 경로를 도식화하면 아래와 같습니다.\n\n\n\nPath of Stochastic processes : \\(dW,\\;\\;a\\,dt,\\;\\;a\\,dt+b\\,dW\\)\n\n\n\n\n\n\n\n\n14.8 Fractional Brownian Motion\n\n\n\n지금까지 살펴본 브라운운동(위너과정, GWP)은 마코프 과정의 특수한 형태로서 소개하였습니다.\n즉, 확률변수 \\(X\\)가 GWP를 따른다면 각 \\(\\Delta t\\)에 대해 \\(\\Delta X\\)는 독립적으로 결정됩니다. 이는 \\(t&gt;s&gt;0\\)로 시간이 주어질 때 \\(X(t)-X(s),\\;X(s)\\)가 독립이라는 의미이므로, 다음과 같이 정리할 수 있습니다. \\[Var[X(t)-X(s)]=E[(X(t)-X(s))^2]-E[X(t)-X(s)]^2=\\sigma^2(t-s)\\]\n\\(E[X(s)X(t)]=E[X(s)^2]+E[X(s)(X(t)-X(s))]=s\\sigma^2\\)$\n그러나, 실제 현실에서는 주가의 흐름이 마코프 과정을 따르지 않는 경우가 발생합니다. 즉, 주가의 흐름이 과거 주가에 영향을 받는 자기상관성이 관측되고는 합니다.\n이러한 경우를 모델링(e.g. rough volatility models)하기 위해 등장한 개념이 Fractional Brownian Motion입니다.\nFBM은 브라운 운동을 일반화한 개념으로, 시간이 \\(t&gt;s&gt;0\\)로 주어졌을 때, 자기상관성의 척도로 \\(H\\)(Hurst exponent)가 주어지며, 다음과 같이 정의됩니다.\n\\[E[(X(t)-X(s))^2]=\\sigma^2(t-s)^{2H},\\;E[X(s)X(t)]=\\frac{\\sigma^2}{2}(t^{2H}+s^{2H}-(t-s)^{2H})\\]\n\\(H&gt;0.5\\)일때 양의 자기상관성, \\(H&lt;0.5\\)일때 음의 자기상관성, \\(H=0.5\\)일 때 마코프 과정(랜덤워크)을 띄게 되는 브라운 운동입니다.\n\n\n\n\nIto’s Process\n일반화된 위너과정에서 평균변화율과 변동률이 상수로 주어졌다면, 이토과정에서는 평균변화율과 변동률이 시간과 확률변수에 대한 함수 \\(a(x,t),\\;b(x,t)\\)로 주어지게 됩니다. 즉,\n\\[dx=a(x,t)\\,dt+b(x,t)\\,dW,\\;\\;\\Delta x=a(x,t)\\Delta t+b(x,t)\\epsilon\\sqrt{\\Delta t}\\]\n이를 통해 이토과정도 마코프과정의 한 종류임을 알 수 있습니다.",
     "crumbs": [
-      "Chapter 13"
+      "Chapter 14"
     ]
   },
   {
     "objectID": "Chapter14.html#the-process-for-a-stock-price",
     "href": "Chapter14.html#the-process-for-a-stock-price",
-    "title": "Chapter 13",
+    "title": "Chapter 14",
     "section": "14.3 The Process for a Stock Price",
     "text": "14.3 The Process for a Stock Price\n이제, 배당이 없는 주식에 대해 확률과정을 모델링해보겠습니다.\n먼저 주가가 일반화된 위너과정(GWP)를 따른다고 가정한다면, 평균변화율과 변동률이 상수인 확률과정 \\(dS=a\\,dt+b\\,dW\\)를 생각할 수 있습니다.\n그러나, 이는 주가의 변화분이 상수로 고정되어있다는 의미인데 현실과 부합하지 않는 부분이 존재합니다. 실제 주식투자자는 현재 주가가 높고 낮음에 관계없이 투자자금 대비 기대수익률을 고려하는데, 그렇다면 동일한 기대수익률 하에 주가의 변화분이 현재 주가에 따라 달라지기 때문입니다.\n따라서, 주가 대신에 주가수익률이 GWP를 따른다고 가정하는 것이 보다 현실에 부합하게 되며 평균변화율이 \\(\\mu\\), 변동률이 \\(\\sigma\\)로 주어져있다면 주가수익률은 다음과 같은 이토과정을 따른다고 할 수 있습니다. 이러한 주식의 확률과정을 기하학적 브라운 운동(GBM, Geometric Brownian Motion)이라고도 합니다.\n\\[dS=\\mu\\,S\\,dt+\\sigma\\,S\\,dW \\Rightarrow\\]\n\\[\\frac{dS}{S}=\\mu\\,dt+\\sigma\\,dW,\\;\\;\\frac{\\Delta S}{S}=\\mu\\Delta t+\\sigma\\epsilon\\sqrt{\\Delta t}\\]\n단위시간 \\(\\Delta t\\)에 대해 평균은 \\(\\mu\\Delta t\\), 분산은 \\(\\sigma^2\\Delta t\\)이며 표준편차는 \\(\\sigma\\sqrt{\\Delta t}\\)이고, 단위시간이 충분히 작다면 \\(\\frac{\\Delta S}{S}\\sim\\phi(\\mu\\Delta t,\\sigma^2\\Delta t)\\)입니다.\n즉, \\(\\mu\\)와 각각 단위시간에 대한 주가의 기대수익률과 표준편차를 연율로 환산한 것입니다.\n\n\n\n\n\n\nWarning\n\n\n\n단위시간에 대한 주가수익률은 정규분포로 근사할 수 있으나, 기간 \\(T\\)에 대한 주가 \\(S_T-S_0\\)는 평균변화율(\\(\\mu\\,S_t\\))이 상수로 주어져있지 않기 때문에 14.2의 GWP와 동일한 방법으로 전개할 수 없습니다.\n대신에, 주가의 연환산 기대수익률 및 표준편차가 주어져있다면 \\(\\frac{\\Delta S}{S}\\sim\\phi(\\mu\\Delta t,\\sigma^2\\Delta t)\\)를 이용한 몬테카를로 시뮬레이션(Monte Carlo Simultation)을 통해 주가 \\(S_T\\)를 모델링할 수 있습니다.",
     "crumbs": [
-      "Chapter 13"
+      "Chapter 14"
     ]
   },
   {
     "objectID": "Chapter14.html#itos-lemma",
     "href": "Chapter14.html#itos-lemma",
-    "title": "Chapter 13",
+    "title": "Chapter 14",
     "section": "14.6 Ito’s Lemma",
     "text": "14.6 Ito’s Lemma\n앞선 장에서 우리는 파생상품의 가격결정이 기초자산과의 관계로부터 시작하여 기초자산의 현재가격을 통해 결정된다는 것을 살펴보았습니다. 즉, 파생상품의 가격은 기초자산의 가격의 함수입니다.\n여기에 확률과정을 적용하면, 파생상품의 가격은 확률변수인 기초자산의 가격과 시간에 대한 함수형태로 표현할 수 있다는 것입니다. 그렇다면 확률변수를 이용한 함수는 어떤 방식으로 움직이며, 어떠한 확률과정을 따르게 되는걸까요? 여기서 이토의 보조정리(Ito’s Lemma)라고 불리는 아주 중요한 개념이 등장합니다.\n이토의 보조정리란, 이토과정을 따르는 확률변수 \\(dx=a(x,t)dt+b(x,t)dW\\)와 확률변수 및 시간에 대한 함수 \\(G=f(x,t)\\)가 주어져있을 때, \\(G\\)가 다음과 같은 확률과정을 따르게 된다는 정리입니다.\n\\[dG=(\\frac{\\partial G}{\\partial x}a+\\frac{\\partial G}{\\partial t}+\\frac{1}{2}\\frac{\\partial^2 G}{\\partial x^2}b^2)dt+\\frac{\\partial G}{\\partial x}b\\,dW\\]\n즉, 평균변화율이 \\(\\frac{\\partial G}{\\partial x}a+\\frac{\\partial G}{\\partial t}+\\frac{1}{2}\\frac{\\partial^2 G}{\\partial x^2}b^2\\)이며 변동률이 \\(\\frac{\\partial G}{\\partial x}b\\)인 이토과정을 따른다는 의미입니다.\n이제, 파생상품의 가격 \\(G=f(S,t)\\)와 주가의 확률과정 \\(dS=\\mu\\,S\\,dt+\\sigma\\,S\\,dW\\)에 이토의 보조정리를 적용하겠습니다.\n\\[dG=(\\frac{\\partial G}{\\partial S}\\mu\\,S+\\frac{\\partial G}{\\partial t}+\\frac{1}{2}\\frac{\\partial^2 G}{\\partial S^2}\\sigma^2\\,S^2)dt+\\frac{\\partial G}{\\partial S}\\sigma\\,S\\,dW\\]\n즉, 파생상품의 가격 역시 기초자산과 유사한 이토과정을 따르게 되며, 동일한 위너과정 \\(dW\\)에 의해 그 경로가 결정됩니다. 이 개념은 다음 장의 BSM(Black Sholes Merton) 모형의 결과를 도출할 때 핵심개념으로 이용됩니다.",
     "crumbs": [
-      "Chapter 13"
+      "Chapter 14"
     ]
   },
   {
     "objectID": "Chapter14.html#application-of-itos-lemma",
     "href": "Chapter14.html#application-of-itos-lemma",
-    "title": "Chapter 13",
+    "title": "Chapter 14",
     "section": "14.7 Application of Ito’s Lemma",
     "text": "14.7 Application of Ito’s Lemma\n\nForward Contract\n\\(t\\)시점의 선도가격은 \\(F_0=S_0e^{r(T-t)}\\)이므로, 무위험이자율이 주어져있다면 이토의 보조정리를 적용할 수 있습니다.\n\\[dF=(\\frac{\\partial F}{\\partial S}\\mu\\,S+\\frac{\\partial F}{\\partial t}+\\frac{1}{2}\\frac{\\partial^2 F}{\\partial S^2}\\sigma^2\\,S^2)dt+\\frac{\\partial F}{\\partial S}\\sigma\\,S\\,dW\\]\n\\[=(e^{r(T-t)}\\mu\\,S-rSe^{r(T-t)})dt+e^{r(T-t)}\\sigma\\,S\\,dW\\]\n\\[\\therefore\\;dF=(\\mu-r)\\,F\\,dt+\\sigma\\,F\\,dW\\]\n\n\nThe Lognormal property\n\\(G=ln\\,S\\)라고 하면, \\(\\frac{dG}{dS}=\\frac{1}{S},\\;\\frac{dG}{dt}=0,\\;\\frac{d^2G}{dS^2}=-\\frac{1}{S^2}\\)\n\\[dG=(\\frac{\\partial G}{\\partial S}\\mu\\,S+\\frac{\\partial G}{\\partial t}+\\frac{1}{2}\\frac{\\partial^2 G}{\\partial S^2}\\sigma^2\\,S^2)dt+\\frac{\\partial G}{\\partial S}\\sigma\\,S\\,dW\\]\n\\[=(\\frac{1}{S}\\mu\\,S-\\frac{1}{2}\\frac{1}{S^2}\\sigma^2S^2)dt+\\frac{1}{S}\\sigma\\,S\\,dW\\]\n\\[\\therefore\\;dG=(\\mu-\\frac{1}{2}\\sigma^2)dt+\\sigma\\,dW\\]\n이토의 보조정리에 따라, 이토과정을 따르는 주가에 자연로그를 취하면 GWP를 따르게 됩니다. 이제, 14.2의 전개식을 적용하면 기간 \\(T\\)에 대한 주가의 로그수익률이 정규분포를 따르게 됨을 유도할 수 있습니다.\n\\[ln\\,S_T-ln\\,S_0=ln\\frac{S_t}{S_0}\\sim\\phi((\\mu-\\frac{1}{2}\\sigma^2)T,\\sigma^2\\,T)\\]",
     "crumbs": [
-      "Chapter 13"
+      "Chapter 14"
+    ]
+  },
+  {
+    "objectID": "Chapter15.html",
+    "href": "Chapter15.html",
+    "title": "Chapter 15",
+    "section": "",
+    "text": "15.1~3 Lognormal Property & Expected return\n블랙-숄즈-머튼 모형에서 사용하는 주가모형은 앞 장에서 살펴본 내용과 동일합니다.\n즉, 매우 작은 시간 \\(\\Delta t\\)에 대해 주가수익률은 정규분포를 따르며, 평균은 \\(\\mu\\), 표준편차는 \\(\\sigma\\) 입니다.\n이는 앞서 전개한 바와 같이 주가수익률이 Generalized Wiener Process를 따른다는 의미이며, 주가는 Ito Process를 따르게 됩니다.\n주가에 로그를 취한 뒤 Ito’s lemma를 적용하면 다시 Generalized Wiener Process를 따르게 되며, 표현하면 아래와 같습니다.\n\\[\\frac{dS}{S}=\\mu\\;dt+\\sigma\\;dz\\;\\Rightarrow\\;\\ln{S}=(\\mu-\\frac{\\sigma^2}{2})dt+\\sigma\\;dz\\]\n\\[\\Rightarrow\\;\\ln{S_T}\\sim\\phi[\\ln{S_0}+(\\mu-\\frac{\\sigma^2}{2})T,\\;\\sigma^2T]\\]\n주가에 자연로그를 취한 형태가 정규분포를 따른다는 의미를 자세히 살펴보겠습니다.\n주가에 적용되는 연속복리수익률 \\(x\\)를 가정해보겠습니다.\n그러면, \\(T\\)시점의 주가 \\(S_T=S_0e^{xT}\\)로 표현할 수 있습니다.\n이를 \\(x\\)에 대해 정리하면 \\(x=\\frac{1}{T}\\ln{\\frac{S_T}{S_0}}~\\phi(\\mu-\\frac{\\sigma^2}{2},\\;\\sigma^2)\\)입니다.\n즉, 주가의 자연로그를 취한 형태가 정규분포를 따른다면 주가의 연속복리수익률도 유사한 정규분포를 따르게 됩니다.",
+    "crumbs": [
+      "Chapter 15"
+    ]
+  },
+  {
+    "objectID": "Chapter15.html#lognormal-property-expected-return",
+    "href": "Chapter15.html#lognormal-property-expected-return",
+    "title": "Chapter 15",
+    "section": "",
+    "text": "Note\n\n\n\n위에서 우리는 주가의 평균변화율이 주가의 기대수익률 \\(\\mu\\)로 주어져 있을 때, 주가의 연속복리수익률은 평균이 \\(\\mu-\\frac{\\sigma^2}{2}\\)인 정규분포를 따른다는 결과를 얻었습니다. 이는 주가의 기대수익률보다 낮은 값입니다.\n현재까지 우리는 일반적으로 \\(T\\)시점의 주가의 기대값을 \\(E(S_T)=S_0e^{\\mu T}\\)라고 표현해왔습니다. 왜 이런 차이가 발생하는 것일까요?\n이를 이해하기 위해서는 먼저 우리가 가정한 주가모형을 잘 이해해야합니다. 연속복리수익률의 분포를 전개하기에 앞서, 우리는 시간 \\(\\Delta t\\)에 대해서 주가의 수익률이 평균이 \\(\\mu \\Delta t\\)인 정규분포를 따른다고 가정하였습니다.\n즉, 매우 작은 시간의 간격 \\(\\Delta t\\)에서 주가수익률의 분포는 기대수익률과 동일하지만 이를 기간 \\(T\\)로 확장하게 되면, 그 사이의 수많은 \\(\\Delta t\\)에 대해 수익률 \\(\\mu\\)를 누적하게 됩니다.\n이는 기하평균의 방식으로 주가수익률을 산출하는 것과 유사하며, 이에 따라 기간 \\(T\\)에 대해서 주가의 연속복리수익률의 평균은 \\(\\Delta t\\)에 대해 \\(\\mu\\)를 기하평균하여 산출한 \\(\\mu-\\frac{\\sigma^2}{2}\\)가 됩니다. 산술평균한 결과인 \\(\\mu\\) 보다는 낮은 값입니다.",
+    "crumbs": [
+      "Chapter 15"
+    ]
+  },
+  {
+    "objectID": "Chapter15.html#volatility",
+    "href": "Chapter15.html#volatility",
+    "title": "Chapter 15",
+    "section": "15.4 Volatility",
+    "text": "15.4 Volatility\n다음으로, 변동성을 나타내는 주가수익률의 표준편차 \\(\\sigma\\)에 대해서 알아보겠습니다.\n일반적으로 \\(\\sigma\\)는 15% ~ 60% 수준의 값을 가지며, 이 의미는 주가의 연변동성이 15% ~ 60%라는 의미입니다.\n앞서 강조하였던 것 처럼, 표준편차는 기간에 제곱근만큼 영향을 받으며 2년이라면 \\(\\times\\sqrt{2}\\), 6개월이라면 \\(\\times1/\\sqrt{2}\\) 등 시간 \\(\\Delta t\\)에 대해 변동성은 \\(\\sigma\\Delta t\\)가 됩니다.\n\n\n\n\n\n\nEstimating Volatility from historical data\n\n\n\n과거 주가를 기반으로 주가의 연변동성 \\(\\sigma\\)를 추정하는 경우, 일/주/월 단위의 주가를 통해 로그수익률을 산출한 다음, 표본표준편차를 산출하여 추정하게 됩니다.\n즉, \\(s^2=\\frac{1}{n-1}\\sum_{k=1}^N(u_k-\\bar{u})\\)를 이용해 \\(s\\)를 산출하고, 월 단위라면 \\(\\hat{\\sigma}=\\sqrt{12}s\\) 및 일 단위라면 \\(\\hat{\\sigma}=\\sqrt{approx. 252}s\\)을 통해 연표준편차를 추정합니다.\n이때, 표준편자의 표준오차는 \\(\\frac{\\hat{\\sigma}}{\\sqrt{2N}}\\)이 됩니다.",
+    "crumbs": [
+      "Chapter 15"
+    ]
+  },
+  {
+    "objectID": "Chapter15.html#the-black-scholes-merton-differential-equation",
+    "href": "Chapter15.html#the-black-scholes-merton-differential-equation",
+    "title": "Chapter 15",
+    "section": "15.5 ~ 6 The Black-Scholes-Merton differential equation",
+    "text": "15.5 ~ 6 The Black-Scholes-Merton differential equation\n\nThe idea and Assumption\n블랙-숄즈-머튼 미분방정식은 배당이 없는 주식에 대해서만 유효하며, 이항모형을 설명할 때 사용했던 무위험포트폴리오를 구성하는 방법과 유사한 방식을 활용할 것 입니다.\n하나 다른 점은, 블랙숄즈 방정식에서는 순간적으로만 무위험포트폴리오 구성이 가능하며 이를 유지하려면 리밸런싱이 필요하다는 점 입니다.\n먼저, 블랙숄즈 방정식의 7가지 가정입니다.\n\n주가수익률은 평균변화율이 \\(\\mu\\), 변동률이 \\(\\sigma\\)인 GWP를 따른다.\n무차입공매도는 무한정으로 허용된다.\n거래비용 및 세금은 없으며, 모든 주식은 무한히 나눌 수 있다.\n파생상품의 만기까지 배당은 없다.\n무위험 차익거래 기회는 없다.\n주식의 거래는 연속적으로 이루어진다.\n무위험이자율 \\(r\\)이 존재하며, 모든 기간에 대해 상수이다.\n\n\n\nDerivation of the Black-Scholes-Merton Differential Equation\n가정 1번에 따라 주가는 \\(d\\,S=\\mu\\,S\\,dt+\\sigma\\,S\\,dz\\)를 따릅니다.\n콜옵션의 가격을 \\(f\\)라고 하면, 이는 명백히 \\(S, \\tau=T-t\\)의 함수이므로, 이토의 보조정리를 적용할 수 있습니다.\n\\[d\\,f=(\\frac{\\partial f}{\\partial S}\\mu\\,S+\\frac{\\partial f}{\\partial t}+\\frac{1}{2}\\frac{\\partial^2f}{\\partial S^2}\\sigma^2S^2)dt+\\frac{\\partial f}{\\partial S}\\sigma\\,S\\,dz\\]\n이 두가지 확률과정을 이용해서, \\(t\\)시점에서 무위험포트폴리오를 구성해보겠습니다.\n\n주식을 \\(\\frac{\\partial f}{\\partial S}\\)만큼 매수\n주식 1주에 대한 콜옵션을 매도\n\n이 포트폴리오를 \\(\\Pi=\\frac{\\partial f}{\\partial S}S-f\\)라고 하면, 랜덤워크 \\(dz\\)가 사라지므로, \\(t\\)시점에서 순간적인 포트폴리오의 변화분은 상수가 됩니다.\n\\[d\\Pi=\\frac{\\partial f}{\\partial S}\\;d\\,S-d\\,f=-(\\frac{\\partial f}{\\partial t}+\\frac{1}{2}\\frac{\\partial^2f}{\\partial S^2}\\sigma^2S^2)dt\\]\n그렇다면, 이 포트폴리오는 순간적으로 무위험이므로 가정 5,6에 따라 \\(d\\Pi=r\\Pi\\;d\\,t\\)입니다.\n이제 순차적으로 정리하면, 블랙숄즈 미분방정식을 얻을 수 있습니다.\n\\[r\\Pi\\;d\\,t=d\\Pi=-(\\frac{\\partial f}{\\partial t}+\\frac{1}{2}\\frac{\\partial^2f}{\\partial S^2}\\sigma^2S^2)dt\\]\n\\[\\Rightarrow\\;\\;r\\Pi=-\\frac{\\partial f}{\\partial t}-\\frac{1}{2}\\frac{\\partial^2f}{\\partial S^2}\\sigma^2S^2\\]\n\\[\\Rightarrow\\;\\;-rf+r\\frac{\\partial f}{\\partial S}S=-\\frac{\\partial f}{\\partial t}-\\frac{1}{2}\\frac{\\partial^2f}{\\partial S^2}\\sigma^2S^2\\]\n\\[\\therefore\\;\\;rf\\;=\\;\\frac{\\partial f}{\\partial t}\\;+\\;rS\\frac{\\partial f}{\\partial S}\\;+\\;\\frac{1}{2}\\frac{\\partial^2f}{\\partial S^2}\\sigma^2S^2\\]\n\n\n\n\n\n\nTip\n\n\n\nboundary conditions, perpetual derivatives, tradeable derivatives 등 교재 참조",
+    "crumbs": [
+      "Chapter 15"
+    ]
+  },
+  {
+    "objectID": "Chapter15.html#risk-neutral-valuation",
+    "href": "Chapter15.html#risk-neutral-valuation",
+    "title": "Chapter 15",
+    "section": "15.7 Risk-Neutral Valuation",
+    "text": "15.7 Risk-Neutral Valuation\n블랙숄즈 미분방정식의 풀이는 (1) 물리학의 열 확산 방정식의 풀이 방법을 적용하여 편미분방정식의 특수해를 얻는 방법, (2) 위험중립세상을 가정하고 푸는 방법으로 나뉩니다.\n여기서는 위험중립가정을 통해 최종적으로 공식을 유도해보겠습니다. 앞서 이항모형에서 살펴본 바와 같이, 블랙숄즈 방정식에 위험중립가정을 적용하더라도 결과값은 실제 세상과 동일하게 됩니다.\n\n모든 투자자는 Risk-neutral이며, 이에 따라 모든 자산의 기대수익률과 할인률은 무위험이자율 \\(r\\)이다.\n\n\n\n\n\n\n\nImportant\n\n\n\n블랙숄즈 미분방정식을 유도할 때, 순간적으로 무위험이 되는 포트폴리오를 구축하였습니다.\n이 방법과 이항모형에서 활용한 전개방법은 동일하며, 위험중립가치평가의 방법도 동일하게 적용할 수 있습니다.\n선도계약을 예시로 들어보겠습니다.\n만기 \\(T\\)의 선도계약의 선도가격이 \\(K\\)이며, 현재의 선도계약의 가치가 \\(f\\)라면 선도계약의 만기 pay-off는 \\(S_T-K\\)입니다.\n위험중립세상에서 선도계약을 가치를 구해보겠습니다. 모든 자산의 할인률은 \\(r\\)이므로, \\(f=e^{-rT}\\hat{E}(S_T-K)=e^{-rT}\\hat{E}(S_T)-Ke^{-rT}\\)입니다.\n위험중립세상이므로 \\(\\hat{E}(S_T)=S_0e^{rT(=\\mu T)}\\)를 적용하면,\n\\[f=S_0-Ke^{-rT}\\]\n우리가 앞서 유도한 선도계약의 가치와 동일한 결과를 얻을 수 있습니다.",
+    "crumbs": [
+      "Chapter 15"
+    ]
+  },
+  {
+    "objectID": "Chapter15.html#black-scholes-merton-pricing-formulas",
+    "href": "Chapter15.html#black-scholes-merton-pricing-formulas",
+    "title": "Chapter 15",
+    "section": "15.8 Black-Scholes-Merton Pricing Formulas",
+    "text": "15.8 Black-Scholes-Merton Pricing Formulas\n\\[c\\;=\\;S_0\\,N(d_1)\\;-\\;K\\,e^{-rT}\\,N(d_2)\\]\n\\[p\\;=\\;K\\,e^{-rT}\\,N(-d_2)\\;-\\;S_0\\,N(-d_1)\\]\n\\[where\\;d_1=\\frac{\\ln(S_0/K)+(r+\\sigma^2/2)T}{\\sigma\\sqrt{T}},\\;\\;d_2=d_1-\\sigma\\sqrt{T}\\]\n이제, 블랙숄즈 방정식의 가장 유명한 특수해인 유럽형 옵션의 가격공식에 대해서 알아보겠습니다.\n먼저, 유럽형 콜옵션의 만기 pay-off는 \\(max(S_T-K,0)\\)입니다. 따라서 위험중립세상에서 유럽형 콜옵션의 현재가격은 아래와 같이 표현할 수 있습니다.\n\\[c=e^{-rT}\\;\\hat{E}[\\,max(S_T-K,0)\\,]\\]\n한편, \\(E(S_T)=S_0e^{rT}\\)이고 만기 T까지의 변동성은 \\(\\sigma \\sqrt{T}\\)이므로, 아래 정리를 이용하면 블랙숄즈 공식을 얻을 수 있습니다.\nBy Theorem,\n\\[c\\;=\\;S_0\\,N(d_1)\\;-\\;K\\,e^{-rT}\\,N(d_2)\\]\nBy using Put-call parity \\(c-p=S_0-Ke^{-rT}\\),\n\\[p\\;=\\;K\\,e^{-rT}\\,N(-d_2)\\;-\\;S_0\\,N(-d_1)\\]\n\n\n\n\n\n\nImportant\n\n\n\nThm\nFor lognormally distributed with the mean \\(m\\) & volatility \\(w\\),\n\\[E[\\,max(V-K,0)\\,]\\;=\\;E(V)\\,N(d_1)\\;-\\;K\\,N(d_2)\\]\n\\(where\\;\\;d_1=\\frac{\\ln{[E(V)/K]}+w^2/2}{w},\\;\\;d_2=d_1-w\\)\nProof\n\\(E[max(V-K,0)]=\\int_K^\\infty (V-K)g(V)\\;dV\\)\nLet \\(Q=\\frac{\\ln{V}-m}{w}\\), then \\(Q\\sim\\phi(0,1),\\;h(Q)=\\frac{1}{\\sqrt{2\\pi}}e^{-Q^2/2}\\)\nWe get,\n\\[E[max(V-K,0)]=\\int_{(\\ln{K}-m)/w}^\\infty (e^{Qw+m}-K)h(Q)\\;dQ\\]\n\\[=\\int_{(\\ln{K}-m)/w}^\\infty e^{Qw+m}h(Q)\\;dQ-K\\int_{(\\ln{K}-m)/w}^\\infty h(Q)\\,dQ\\]\nNote that,\n\\[e^{Qw+m}h(Q)=\\frac{1}{\\sqrt{2\\pi}}e^{-\\frac{1}{2}(Q^2-2wQ-2m)}=\\frac{1}{\\sqrt{2\\pi}}e^{-\\frac{1}{2}((Q-w)^2-w^2-2m)}\\]\n\\[=e^{(w^2+2m)/2}\\times\\frac{1}{\\sqrt{2\\pi}}e^{-\\frac{1}{2}(Q-w)^2}=e^{(w^2+2m)/2}\\;h(Q-w)\\]\nTherefore,\n\\[E[max(V-K,0)]=e^{(w^2+2m)/2}\\;\\int_{(\\ln{K}-m)/w}^\\infty h(Q-w)\\;dQ-K\\int_{(\\ln{K}-m)/w}^\\infty h(Q)\\,dQ\\]\nIt is obvious that \\(m=\\ln E(V)-\\frac{w^2}{2}\\) & \\(1-N(x)=N(-x)\\),\nLet \\(d_1=-\\frac{\\ln K-m}{w}+w=\\frac{\\ln [E(V)/K]+w^2/2}{w}\\)\nNow,\n\\[E[\\,max(V-K,0)\\,]\\;=\\;E(V)\\,N(d_1)\\;-\\;K\\,N(d_2),\\;\\because\\; e^{(w^2+2m)/2}=e^{\\ln E(V)}=E(V)\\]",
+    "crumbs": [
+      "Chapter 15"
     ]
   },
   {
