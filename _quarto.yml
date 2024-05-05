@@ -19,6 +19,8 @@ book:
     - Chapter11.qmd
     - Chapter13.qmd
     - Chapter14.qmd
+    - Chapter15.qmd
+
     - Problems.qmd
   downloads: pdf
 
