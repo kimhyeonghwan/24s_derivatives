@@ -674,7 +674,7 @@
     "href": "Chapter15.html#risk-neutral-valuation",
     "title": "Chapter 15",
     "section": "15.7 Risk-Neutral Valuation",
-    "text": "15.7 Risk-Neutral Valuation\n블랙숄즈 미분방정식의 풀이는 (1) 물리학의 열 확산 방정식의 풀이 방법을 적용하여 편미분방정식의 특수해를 얻는 방법, (2) 위험중립세상을 가정하고 푸는 방법으로 나뉩니다.\n여기서는 위험중립가정을 통해 최종적으로 공식을 유도해보겠습니다. 앞서 이항모형에서 살펴본 바와 같이, 블랙숄즈 방정식에 위험중립가정을 적용하더라도 결과값은 실제 세상과 동일하게 됩니다.\n\n모든 투자자는 Risk-neutral이며, 이에 따라 모든 자산의 기대수익률과 할인률은 무위험이자율 \\(r\\)이다.\n\n\n\n\n\n\n\nImportant\n\n\n\n블랙숄즈 미분방정식을 유도할 때, 순간적으로 무위험이 되는 포트폴리오를 구축하였습니다.\n이 방법과 이항모형에서 활용한 전개방법은 동일하며, 위험중립가치평가의 방법도 동일하게 적용할 수 있습니다.\n선도계약을 예시로 들어보겠습니다.\n만기 \\(T\\)의 선도계약의 선도가격이 \\(K\\)이며, 현재의 선도계약의 가치가 \\(f\\)라면 선도계약의 만기 pay-off는 \\(S_T-K\\)입니다.\n위험중립세상에서 선도계약을 가치를 구해보겠습니다. 모든 자산의 할인률은 \\(r\\)이므로, \\(f=e^{-rT}\\hat{E}(S_T-K)=e^{-rT}\\hat{E}(S_T)-Ke^{-rT}\\)입니다.\n위험중립세상이므로 \\(\\hat{E}(S_T)=S_0e^{rT(=\\mu T)}\\)를 적용하면,\n\\[f=S_0-Ke^{-rT}\\]\n우리가 앞서 유도한 선도계약의 가치와 동일한 결과를 얻을 수 있습니다.",
+    "text": "15.7 Risk-Neutral Valuation\n블랙숄즈공식의 유도는 (1) 블랙숄즈 미분방정식에 물리학의 열 확산 방정식의 풀이 방법을 적용하여 편미분방정식의 특수해를 얻는 방법, (2) 위험중립세상을 가정하고 푸는 방법으로 나뉩니다.\n여기서는 위험중립가정을 통해 최종적으로 공식을 유도해보겠습니다. 앞서 이항모형에서 살펴본 바와 같이, 블랙숄즈 방정식에 위험중립가정을 적용하더라도 결과값은 실제 세상과 동일하게 됩니다.\n\n모든 투자자는 Risk-neutral이며, 이에 따라 모든 자산의 기대수익률과 할인률은 무위험이자율 \\(r\\)이다.\n\n\n\n\n\n\n\nImportant\n\n\n\n블랙숄즈 미분방정식을 유도할 때, 순간적으로 무위험이 되는 포트폴리오를 구축하였습니다.\n이 방법과 이항모형에서 활용한 전개방법은 동일하며, 위험중립가치평가의 방법도 동일하게 적용할 수 있습니다.\n선도계약을 예시로 들어보겠습니다.\n만기 \\(T\\)의 선도계약의 선도가격이 \\(K\\)이며, 현재의 선도계약의 가치가 \\(f\\)라면 선도계약의 만기 pay-off는 \\(S_T-K\\)입니다.\n위험중립세상에서 선도계약을 가치를 구해보겠습니다. 모든 자산의 할인률은 \\(r\\)이므로, \\(f=e^{-rT}\\hat{E}(S_T-K)=e^{-rT}\\hat{E}(S_T)-Ke^{-rT}\\)입니다.\n위험중립세상이므로 \\(\\hat{E}(S_T)=S_0e^{rT(=\\mu T)}\\)를 적용하면,\n\\[f=S_0-Ke^{-rT}\\]\n우리가 앞서 유도한 선도계약의 가치와 동일한 결과를 얻을 수 있습니다.",
     "crumbs": [
       "Chapter 15"
     ]
@@ -687,6 +687,36 @@
     "text": "15.8 Black-Scholes-Merton Pricing Formulas\n\\[c\\;=\\;S_0\\,N(d_1)\\;-\\;K\\,e^{-rT}\\,N(d_2)\\]\n\\[p\\;=\\;K\\,e^{-rT}\\,N(-d_2)\\;-\\;S_0\\,N(-d_1)\\]\n\\[where\\;d_1=\\frac{\\ln(S_0/K)+(r+\\sigma^2/2)T}{\\sigma\\sqrt{T}},\\;\\;d_2=d_1-\\sigma\\sqrt{T}\\]\n이제, 블랙숄즈 방정식의 가장 유명한 특수해인 유럽형 옵션의 가격공식에 대해서 알아보겠습니다.\n먼저, 유럽형 콜옵션의 만기 pay-off는 \\(max(S_T-K,0)\\)입니다. 따라서 위험중립세상에서 유럽형 콜옵션의 현재가격은 아래와 같이 표현할 수 있습니다.\n\\[c=e^{-rT}\\;\\hat{E}[\\,max(S_T-K,0)\\,]\\]\n한편, \\(E(S_T)=S_0e^{rT}\\)이고 만기 T까지의 변동성은 \\(\\sigma \\sqrt{T}\\)이므로, 아래 정리를 이용하면 블랙숄즈 공식을 얻을 수 있습니다.\nBy Theorem,\n\\[c\\;=\\;S_0\\,N(d_1)\\;-\\;K\\,e^{-rT}\\,N(d_2)\\]\nBy using Put-call parity \\(c-p=S_0-Ke^{-rT}\\),\n\\[p\\;=\\;K\\,e^{-rT}\\,N(-d_2)\\;-\\;S_0\\,N(-d_1)\\]\n\n\n\n\n\n\nImportant\n\n\n\nThm\nFor lognormally distributed with the mean \\(m\\) & volatility \\(w\\),\n\\[E[\\,max(V-K,0)\\,]\\;=\\;E(V)\\,N(d_1)\\;-\\;K\\,N(d_2)\\]\n\\(where\\;\\;d_1=\\frac{\\ln{[E(V)/K]}+w^2/2}{w},\\;\\;d_2=d_1-w\\)\nProof\n\\(E[max(V-K,0)]=\\int_K^\\infty (V-K)g(V)\\;dV\\)\nLet \\(Q=\\frac{\\ln{V}-m}{w}\\), then \\(Q\\sim\\phi(0,1),\\;h(Q)=\\frac{1}{\\sqrt{2\\pi}}e^{-Q^2/2}\\)\nWe get,\n\\[E[max(V-K,0)]=\\int_{(\\ln{K}-m)/w}^\\infty (e^{Qw+m}-K)h(Q)\\;dQ\\]\n\\[=\\int_{(\\ln{K}-m)/w}^\\infty e^{Qw+m}h(Q)\\;dQ-K\\int_{(\\ln{K}-m)/w}^\\infty h(Q)\\,dQ\\]\nNote that,\n\\[e^{Qw+m}h(Q)=\\frac{1}{\\sqrt{2\\pi}}e^{-\\frac{1}{2}(Q^2-2wQ-2m)}=\\frac{1}{\\sqrt{2\\pi}}e^{-\\frac{1}{2}((Q-w)^2-w^2-2m)}\\]\n\\[=e^{(w^2+2m)/2}\\times\\frac{1}{\\sqrt{2\\pi}}e^{-\\frac{1}{2}(Q-w)^2}=e^{(w^2+2m)/2}\\;h(Q-w)\\]\nTherefore,\n\\[E[max(V-K,0)]=e^{(w^2+2m)/2}\\;\\int_{(\\ln{K}-m)/w}^\\infty h(Q-w)\\;dQ-K\\int_{(\\ln{K}-m)/w}^\\infty h(Q)\\,dQ\\]\nIt is obvious that \\(m=\\ln E(V)-\\frac{w^2}{2}\\) & \\(1-N(x)=N(-x)\\),\nLet \\(d_1=-\\frac{\\ln K-m}{w}+w=\\frac{\\ln [E(V)/K]+w^2/2}{w}\\)\nNow,\n\\[E[\\,max(V-K,0)\\,]\\;=\\;E(V)\\,N(d_1)\\;-\\;K\\,N(d_2),\\;\\because\\; e^{(w^2+2m)/2}=e^{\\ln E(V)}=E(V)\\]",
     "crumbs": [
       "Chapter 15"
+    ]
+  },
+  {
+    "objectID": "Chapter17.html",
+    "href": "Chapter17.html",
+    "title": "Chapter 17",
+    "section": "",
+    "text": "17.1 Options on stock indices\n주가지수옵션도 매우 활발히 거래되는 옵션입니다.\n시장 전체를 대표하는 DJIA, S&P500, Nasdaq100 등에 대한 주가지수옵션이 CBOE에서 활발히 거래되고 있으며, 각 산업섹터별로 존재하는 주가지수에 대한 옵션도 존재합니다.\n주가지수옵션은 포트폴리오 보험(보호적 풋), 커버드 콜과 같은 전략적인 투자를 위해 주로 거래됩니다.\n보유한 주식 포트폴리오의 베타가 1인 경우, 시장지수에 대한 주가지수옵션을 포트폴리오 보험에 활용할 수 있습니다.\n포트폴리오의 가치와 동일한 만큼의 풋옵션을 매수한다면, 풋옵션의 행사가격 미만으로 지수가치가 떨어졌을때에 한하여 손실을 회피(coverage)할 수 있습니다.\n베타가 1이 아닌 경우, 포트폴리오 베타를 고려한 가치만큼 풋옵션을 매수함으로써 포트폴리오 보험을 구축할 수 있습니다.",
+    "crumbs": [
+      "Chapter 17"
+    ]
+  },
+  {
+    "objectID": "Chapter17.html#currency-options",
+    "href": "Chapter17.html#currency-options",
+    "title": "Chapter 17",
+    "section": "17.2 Currency options",
+    "text": "17.2 Currency options\n통화옵션은 기본적으로 장외에서 활발히 거래되는 옵션입니다.\n장외옵션의 특성상 행사가격도 매우 다양하고, 만기일이나 다른 상품 스펙을 계약당사자 간에 자유롭게 정할 수 있는 장점이 있습니다.\nNasdaq OMX 등 거래소에서도 통화옵션이 거래되기는 하지만, 그 규모는 장외시장 대미 매우 작습니다.\n통화옵션을 이용한 대표적인 거래전략으로는 Range forwards가 있습니다.\n행사가격이 낮은 풋옵션을 매수하고, 행사가격이 높은 콜옵션을 매도하면, 행사가격 사이 구간의 만기 payoff는 flat하고 나머지는 기울기가 -1인 형태가 되는데, 이를 Short range forwards라고 합니다.\nShort range forwards와 현물통화를 가지고 있다면, bull call spread와 유사한 만기 payoff를 가지게 됩니다.",
+    "crumbs": [
+      "Chapter 17"
+    ]
+  },
+  {
+    "objectID": "Chapter17.html#options-on-stocks-paying-known-dividend-yields",
+    "href": "Chapter17.html#options-on-stocks-paying-known-dividend-yields",
+    "title": "Chapter 17",
+    "section": "17.3 Options on stocks paying known dividend yields",
+    "text": "17.3 Options on stocks paying known dividend yields\n지금까지 모든 옵션 프라이싱은 배당이 없는 경우에 한정하였습니다.\n그러나 실제 세상의 주식은 대부분 배당이 있습니다.\n이제 이러한 배당을 가격결정에 어떻게 적용하는지 살펴보겠습니다.\n방법은 간단합니다.\n주식의 배당이 연속복리 배당수익률 \\(q\\)로 주어져있다고 가정하는 것 입니다.\n그렇다면, 주식의 기대수익률이 \\(k\\)일 때, 만기 \\(T\\)시점까지 주가의 기대값 \\(E(S_T)=S_0e^{(k-q)T}\\)가 될 것입니다.\n위험중립세상에서는 어떨까요? 동일한 방식을 적용하면 \\(E(S_T)=S_0e^{(r-q)T}\\)가 될 것 입니다.\n이제, 두가지 포트폴리오를 비교해봅시다.\n\n연속복리 배당수익률 \\(q\\)로 주어져있으며, 현재 가격이 \\(S_0\\)인 주식\n배당이 없으며, 현재 가격이 \\(S_0e^{-qT}\\)인 주식\n\n두가지 포트폴리오의 만기 \\(T\\)시점의 기대값은 \\(S_0e^{(k-q)T}\\)로 동일합니다. 즉, 배당이 있고 현재 가격이 \\(S_0\\)인 경우는, 배당이 없으며 현재 가격이 \\(S_0e^{-qT}\\)인 경우와 동일합니다.\n이 방식으로 전개할 때, 앞서 살펴본 옵션의 가격결정과 관련된 수식에서 \\(S_0\\)를 \\(S_0e^{-qT}\\)로 치환하면 배당이 있는 경우에 대한 결과를 얻을 수 있습니다.\n\nLower bounds for option prices\n\\[c\\geq max(S_0e^{-qT}-Ke^{-rT},0),\\;\\;p\\geq max(Ke^{-rT}-S_0e^{-qT})\\]\n\n\nPut-call parity\n\\[c-p=S_0e^{-qT}-Ke^{-rT}\\]\n\\[S_0e^{-qT}-K\\leq C-P\\leq S_0-Ke^{-rT}\\]\n\n\nStochastic process & BSM equition and formulas\n\\[dS=(r-q)S\\,dt+\\sigma S\\,dz\\]\n\\[\\frac{\\partial f}{\\partial t}+(r-q)S\\frac{\\partial f}{\\partial S}+\\frac{1}{2}\\sigma^2S^2\\frac{\\partial^2f}{\\partial S^2}=rf\\]\n\\[c=S_0e^{-qT}N(d_1)-Ke^{-rT}N(d_2)\\;for\\;d_1=\\frac{\\ln(S_0e^{(r-q+\\frac{1}{2}\\sigma^2)T})-\\ln K}{\\sigma\\sqrt{T}},\\;d_2=d_1-\\sigma\\sqrt{T}\\]\n\n\n17.4 Valuation of european stock index options\n주가지수옵션의 가격결정공식은 무위험이자율과 배당수익률이 \\(r,q\\)로 주어져있을 때 위에서 살펴본 바와 동일합니다.\n여기서는 선물의 이론가격 \\(F_0=S_0e^{(r-q)T}\\)를 이용하여 옵션가격을 결정하는 방법을 추가로 살펴보겠습니다.\n위 콜옵션의 BSM공식에 선물의 이론가격을 대입하여 정리하면,\n\\[c=F_0e^{-rT}N(d_1)-Ke^{-rT}N(d_2)\\;for\\;d_1=\\frac{\\ln(F_0e^{\\frac{1}{2}\\sigma^2T})-\\ln K}{\\sigma\\sqrt{T}},\\;d_2=d_1-\\sigma\\sqrt{T}\\]\n또한, 풋콜패리티는 \\(c-p=(F_0-K)e^{-rT}\\)로 정리할 수 있습니다.\n이를 이용해 주가 및 배당수익률을 확정하기 어려운 상황에서 선물가격을 이용해 옵션가격을 계산할 수 있습니다.\n\n\n17.5 Valuation of European currency options\n앞서 우리는 배당이 있는 주식은, 배당이 없고 현재가격이 \\(S_0e^{-qT}\\)인 경우와 동일하다고 가정하고 식을 전개하였습니다.\n통화옵션의 경우, 통화선물의 이론가격이 \\(F_0=S_0e^{(r-r^f)T}\\)임을 고려해보겠습니다.\n만약 국내 무위험이자율이 \\(r\\), 해외 무위험이자율이 \\(r^f\\), 현재 환율이 \\(S_0\\)로 주어져 있다고 하면, 이는 국내 무위험이자율이 \\(r\\), 해외 무위험이자율은 \\(0\\), 현재 환율이 \\(S_0e^{-r^fT}\\)로 주어져 있는 경우와 동일할 것 입니다.\n이를 적용한다면 상기 전개한 배당이 적용된 옵션에 대한 수식에서, \\(q\\)를 \\(r^f\\)로 치환함으로써 통화옵션의 가격결정공식을 모두 유도할 수 있습니다. 즉, 아래와 같습니다.\n\\[c=S_0e^{-r^fT}N(d_1)-Ke^{-rT}N(d_2),\\;\\;c-p=S_0e^{-r^fT}-Ke^{-rT}\\]\n\n\n17.6 American Options\n미국형 옵션의 경우, Binomial Tree 모형(CRR)을 통해 마지막 노드부터 조기상환 가능성을 고려해가면서 순차적으로 현재가치로 환산한다면 그 가치를 결정할 수 있습니다.\n이 때, 위험중립가치평가를 통해 주가의 상승확률 \\(p=\\frac{e^{r\\Delta T}-d}{u-d}\\)를 결정하였습니다.\n배당이 있는 경우의 주식옵션, 주가지수옵션 및 통화옵션의 경우 위와 동일한 논리를 적용할 수 있고, 이에 따른 위험중립확률은 아래와 같습니다.\n\\[p=\\frac{e^{(r-q)\\Delta T}-d}{u-d}=\\frac{e^{(r-r^f)\\Delta T}-d}{u-d}\\;\\;for\\;\\;u=e^{\\sigma\\sqrt{\\Delta T}},\\;d=1/u\\]",
+    "crumbs": [
+      "Chapter 17"
     ]
   },
   {
